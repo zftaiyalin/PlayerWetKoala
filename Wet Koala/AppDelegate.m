@@ -8,12 +8,47 @@
 
 #import "AppDelegate.h"
 #import <SpriteKit/SpriteKit.h>
+#import "YYModel.h"
+#import "RedBoxModel.h"
+#import "AppUnitl.h"
+#import "NewViewController.h"
+@import Firebase;
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    UMConfigInstance.appKey = @"592bbcf63eae25316d00206e";
+    UMConfigInstance.channelId = @"App Store";
+    [MobClick startWithConfigure:UMConfigInstance];//配置以上参数后调用此方法初始化SDK！
+    
+    
+    [GADMobileAds configureWithApplicationID:@"ca-app-pub-3676267735536366~2746962139"];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设置格式：zzz表示时区
+    [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];
+    //NSDate转NSString
+    NSString *currentDateString = [dateFormatter stringFromDate:[NSDate date]];
+    NSError *error = nil;
+    
+    NSString *ss = [NSString stringWithFormat:@"http://opmams01o.bkt.clouddn.com/SakuraFly.json?v=%@",currentDateString];
+    NSURL *xcfURL = [NSURL URLWithString:ss];
+    NSString *htmlString = [NSString stringWithContentsOfURL:xcfURL encoding:NSUTF8StringEncoding error:&error];
+    
+    AppModel *model = [AppModel yy_modelWithJSON:htmlString];
+    
+    [AppUnitl sharedManager].ssmodel = model;
+    [AppUnitl sharedManager].isGame = NO;
+        [AppUnitl sharedManager].ssmodel.appstatus.isShow = YES;
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController =[[UINavigationController alloc] initWithRootViewController:[[NewViewController alloc] init]] ;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 							
@@ -23,8 +58,11 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     
     // pause sprite kit
-    SKView *view = (SKView *)self.window.rootViewController.view;
-    view.paused = YES;
+    if ([AppUnitl sharedManager].isGame) {
+        SKView *view = (SKView *)self.window.rootViewController.view;
+        view.paused = YES;
+    }
+    
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -43,8 +81,10 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
     // resume sprite kit
+    if ([AppUnitl sharedManager].isGame) {
     SKView *view = (SKView *)self.window.rootViewController.view;
     view.paused = NO;
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

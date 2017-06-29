@@ -13,4 +13,8 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "YYCategories.h"
+    #import "Masonry.h"
+    #import "UMMobClick/MobClick.h"
+    #import "UIViewController+Add.h"
 #endif
