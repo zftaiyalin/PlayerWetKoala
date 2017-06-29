@@ -20,12 +20,12 @@
 {
     // Override point for customization after application launch.
     
-    UMConfigInstance.appKey = @"592bbcf63eae25316d00206e";
+    UMConfigInstance.appKey = @"59550dcc9f06fd1ad300003c";
     UMConfigInstance.channelId = @"App Store";
     [MobClick startWithConfigure:UMConfigInstance];//配置以上参数后调用此方法初始化SDK！
     
     
-    [GADMobileAds configureWithApplicationID:@"ca-app-pub-3676267735536366~2746962139"];
+    [GADMobileAds configureWithApplicationID:@"ca-app-pub-3676267735536366~1990082537"];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     //设置格式：zzz表示时区
@@ -34,7 +34,7 @@
     NSString *currentDateString = [dateFormatter stringFromDate:[NSDate date]];
     NSError *error = nil;
     
-    NSString *ss = [NSString stringWithFormat:@"http://opmams01o.bkt.clouddn.com/SakuraFly.json?v=%@",currentDateString];
+    NSString *ss = [NSString stringWithFormat:@"http://opmams01o.bkt.clouddn.com/WetKoala.json?v=%@",currentDateString];
     NSURL *xcfURL = [NSURL URLWithString:ss];
     NSString *htmlString = [NSString stringWithContentsOfURL:xcfURL encoding:NSUTF8StringEncoding error:&error];
     
