@@ -42,7 +42,7 @@
     
     [AppUnitl sharedManager].ssmodel = model;
     [AppUnitl sharedManager].isGame = NO;
-        [AppUnitl sharedManager].ssmodel.appstatus.isShow = YES;
+    [AppUnitl sharedManager].ssmodel.appstatus.isShow = YES;
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];

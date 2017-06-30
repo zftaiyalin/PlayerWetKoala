@@ -11,10 +11,13 @@
 #import "HongViewController.h"
 #import "AppUnitl.h"
 #import "ViewController.h"
+#import "YYModel.h"
+
 
 @interface NewViewController (){
     UIAlertView *pinlunAlert;
     int videoindex;
+    NSString *htmlString;
 }
 
 @end
@@ -68,9 +71,46 @@
             make.top.equalTo(button.mas_bottom).offset(20);
         }];
 
+    }else{
+    
+        if ([AppUnitl sharedManager].ssmodel == nil) {
+            
+            [self performSelector:@selector(loadRequest) withObject:nil afterDelay:2.0];
+        }
     }
 
     [self addBaner];
+    
+}
+
+-(void)loadRequest{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设置格式：zzz表示时区
+    [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];
+    //NSDate转NSString
+    NSString *currentDateString = [dateFormatter stringFromDate:[NSDate date]];
+    NSError *error = nil;
+    
+    NSString *ss = [NSString stringWithFormat:@"http://opmams01o.bkt.clouddn.com/WetKoala.json?v=%@",currentDateString];
+    NSURL *xcfURL = [NSURL URLWithString:ss];
+    htmlString = [NSString stringWithContentsOfURL:xcfURL encoding:NSUTF8StringEncoding error:&error];
+    
+    
+    if (htmlString != nil) {
+        
+        AppModel *model = [AppModel yy_modelWithJSON:htmlString];
+        [AppUnitl sharedManager].ssmodel = model;
+        
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"pinglun"] && [AppUnitl sharedManager].ssmodel.appstatus.isShow) {
+            
+            pinlunAlert = [[UIAlertView alloc] initWithTitle:[AppUnitl sharedManager].ssmodel.appstatus.alertTitle message:[AppUnitl sharedManager].ssmodel.appstatus.alertText delegate:self   cancelButtonTitle:@"待会儿" otherButtonTitles:@"马上获取",nil];
+            [pinlunAlert show];
+            
+        }
+    }else{
+        [self performSelector:@selector(loadRequest) withObject:nil afterDelay:2.0];
+    }
     
 }
 

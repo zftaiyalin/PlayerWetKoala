@@ -750,7 +750,7 @@
 				ORGANIZATIONNAME = haruair;
 				TargetAttributes = {
 					E5A3EA0B18AB60AC004336F3 = {
-						DevelopmentTeam = BW3X4QNV6N;
+						DevelopmentTeam = WD9BF79VSR;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 1;
@@ -1075,11 +1075,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = BW3X4QNV6N;
+				DEVELOPMENT_TEAM = WD9BF79VSR;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wet Koala/Wet Koala-Prefix.pch";
 				INFOPLIST_FILE = "Wet Koala/Wet Koala-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anfeng.Spiral;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
@@ -1094,11 +1095,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = BW3X4QNV6N;
+				DEVELOPMENT_TEAM = WD9BF79VSR;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wet Koala/Wet Koala-Prefix.pch";
 				INFOPLIST_FILE = "Wet Koala/Wet Koala-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anfeng.Spiral;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
