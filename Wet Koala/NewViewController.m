@@ -135,7 +135,7 @@
     if (buttonIndex == 1) {
         NSString *str = [NSString stringWithFormat:
                          @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%@&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8",
-                         @"1241876168"];
+                         @"1254420569"];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"pinglun"];
     }
