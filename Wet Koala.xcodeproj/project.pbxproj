@@ -1080,7 +1080,7 @@
 				GCC_PREFIX_HEADER = "Wet Koala/Wet Koala-Prefix.pch";
 				INFOPLIST_FILE = "Wet Koala/Wet Koala-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.anfeng.WetKoala;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anfeng.daoguoshenqi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
@@ -1100,7 +1100,7 @@
 				GCC_PREFIX_HEADER = "Wet Koala/Wet Koala-Prefix.pch";
 				INFOPLIST_FILE = "Wet Koala/Wet Koala-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.anfeng.WetKoala;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anfeng.daoguoshenqi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;

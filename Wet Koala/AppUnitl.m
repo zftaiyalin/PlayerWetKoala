@@ -19,4 +19,19 @@
     });
     return sharedAccountManagerInstance;
 }
+
+
++ (BOOL)getPreferredLanguage:(NSString *)lan;
+{
+    NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
+    NSArray* languages = [defs objectForKey:@"AppleLanguages"];
+    NSString* preferredLang = [languages objectAtIndex:0];
+    NSLog(@"Preferred Language:%@", preferredLang);
+    if ([preferredLang isEqualToString:lan]) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 @end

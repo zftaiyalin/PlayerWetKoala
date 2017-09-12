@@ -12,9 +12,9 @@
 
 @interface MoviePlayerViewController : UIViewController
 /** 视频URL */
-@property (nonatomic, strong) NSURL *videoURL;
-@property (nonatomic, strong) NSString *titleSring;
-@property (nonatomic, assign) BOOL isShowCollect;
-@property (nonatomic, assign) BOOL isShowWeb;
-@property (nonatomic, assign) int endTime;
+@property (nonatomic, strong) NSURL *videoURL;/*打乱代码结构*/
+@property (nonatomic, strong) NSString *titleSring;/*打乱代码结构*/
+@property (nonatomic, assign) BOOL isShowCollect;/*打乱代码结构*/
+@property (nonatomic, assign) BOOL isShowWeb;/*打乱代码结构*/
+@property (nonatomic, assign) int endTime;/*打乱代码结构*/
 @end

@@ -10,50 +10,50 @@
 
 @implementation GuideNode
 {
-    SKSpriteNode * _title;
-    SKSpriteNode * _indicator;
-    BOOL _didGuide;
-    AnonBlock _returnMethod;
+    SKSpriteNode * _title;/*打乱代码结构*/
+    SKSpriteNode * _indicator;/*打乱代码结构*/
+    BOOL _didGuide;/*打乱代码结构*/
+    AnonBlock _returnMethod;/*打乱代码结构*/
 }
 
 -(id) initWithTitleTexture:(SKTexture *)titleTexture andIndicatorTexture:(SKTexture *)indicatorTexture {
-    self = [super init];
+    self = [super init];/*打乱代码结构*/
     if(self){
-        _didGuide = NO;
-        _returnMethod = ^{};
+        _didGuide = NO;/*打乱代码结构*/
+        _returnMethod = ^{};/*打乱代码结构*/
         
-        _title = [SKSpriteNode spriteNodeWithTexture:titleTexture];
-        _indicator = [SKSpriteNode spriteNodeWithTexture:indicatorTexture];
+        _title = [SKSpriteNode spriteNodeWithTexture:titleTexture];/*打乱代码结构*/
+        _indicator = [SKSpriteNode spriteNodeWithTexture:indicatorTexture];/*打乱代码结构*/
         
-        _title.position = CGPointMake(0.0, 80.0);
-        _indicator.position = CGPointMake(0.0, -120.0);
+        _title.position = CGPointMake(0.0, 80.0);/*打乱代码结构*/
+        _indicator.position = CGPointMake(0.0, -120.0);/*打乱代码结构*/
         
-        [self addChild:_title];
-        [self addChild:_indicator];
+        [self addChild:_title];/*打乱代码结构*/
+        [self addChild:_indicator];/*打乱代码结构*/
         
-        [_indicator runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction moveToX:-100 duration:1.0],[SKAction moveToX:100 duration:1.0]]]]];
+        [_indicator runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction moveToX:-100 duration:1.0],[SKAction moveToX:100 duration:1.0]]]]];/*打乱代码结构*/
     }
-    return self;
+    return self;/*打乱代码结构*/
 }
 
 -(void) setMethod:(void (^)()) returnMethod {
-    _returnMethod = returnMethod;
+    _returnMethod = returnMethod;/*打乱代码结构*/
 }
 
 -(void) runMethod {
-    _returnMethod();
+    _returnMethod();/*打乱代码结构*/
 }
 
 -(void) didGuide {
-    _didGuide = YES;
+    _didGuide = YES;/*打乱代码结构*/
     
-    SKAction * actionMove = [SKAction fadeOutWithDuration:0.3];
-    SKAction * actionMoveDone = [SKAction removeFromParent];
+    SKAction * actionMove = [SKAction fadeOutWithDuration:0.3];/*打乱代码结构*/
+    SKAction * actionMoveDone = [SKAction removeFromParent];/*打乱代码结构*/
     
-    [_title runAction:[SKAction sequence:@[actionMove, actionMoveDone]] withKey:@"did-guide"];
-    [_indicator runAction:[SKAction sequence:@[actionMove, actionMoveDone]] withKey:@"did-guide"];
+    [_title runAction:[SKAction sequence:@[actionMove, actionMoveDone]] withKey:@"did-guide"];/*打乱代码结构*/
+    [_indicator runAction:[SKAction sequence:@[actionMove, actionMoveDone]] withKey:@"did-guide"];/*打乱代码结构*/
 
-    [self runMethod];
+    [self runMethod];/*打乱代码结构*/
 }
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -62,7 +62,7 @@
 
 -(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     if(!_didGuide){
-        [self didGuide];
+        [self didGuide];/*打乱代码结构*/
     }
 }
 

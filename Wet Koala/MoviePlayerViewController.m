@@ -15,51 +15,51 @@
 
 @interface MoviePlayerViewController ()<ZFPlayerDelegate>
 
-@property (strong, nonatomic) UIView *playerFatherView;
-@property (strong, nonatomic) ZFPlayerView *playerView;
+@property (strong, nonatomic) UIView *playerFatherView;/*打乱代码结构*/
+@property (strong, nonatomic) ZFPlayerView *playerView;/*打乱代码结构*/
 /** 离开页面时候是否在播放 */
-@property (nonatomic, assign) BOOL isPlaying;
-@property (nonatomic, strong) ZFPlayerModel *playerModel;
-@property (nonatomic, strong) UIView *bottomView;
-@property(nonatomic,strong)UIWebView *webView;
+@property (nonatomic, assign) BOOL isPlaying;/*打乱代码结构*/
+@property (nonatomic, strong) ZFPlayerModel *playerModel;/*打乱代码结构*/
+@property (nonatomic, strong) UIView *bottomView;/*打乱代码结构*/
+@property(nonatomic,strong)UIWebView *webView;/*打乱代码结构*/
 
 @end
 
 @implementation MoviePlayerViewController
 
 - (void)dealloc {
-    NSLog(@"%@释放了",self.class);
+    NSLog(@"%@释放了",self.class);/*打乱代码结构*/
 }
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES];/*打乱代码结构*/
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];/*打乱代码结构*/
     // push出下一级页面时候暂停
 }
 
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    [super viewDidLoad];/*打乱代码结构*/
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor blackColor];/*打乱代码结构*/
 
         
-        self.playerFatherView = [[UIView alloc]init];
-        [self.view addSubview:self.playerFatherView];
+        self.playerFatherView = [[UIView alloc]init];/*打乱代码结构*/
+        [self.view addSubview:self.playerFatherView];/*打乱代码结构*/
         
         [self.playerFatherView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self.view);
-            make.left.equalTo(self.view);
-            make.width.equalTo(self.view);
-            make.height.mas_equalTo(ScreenWidth*9/16);
-        }];
+            make.centerY.equalTo(self.view);/*打乱代码结构*/
+            make.left.equalTo(self.view);/*打乱代码结构*/
+            make.width.equalTo(self.view);/*打乱代码结构*/
+            make.height.mas_equalTo(ScreenWidth*9/16);/*打乱代码结构*/
+        }];/*打乱代码结构*/
         
         // 自动播放，默认不自动播放
-        [self.playerView autoPlayTheVideo];
+        [self.playerView autoPlayTheVideo];/*打乱代码结构*/
    
     
     
@@ -69,13 +69,13 @@
 
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+    [super didReceiveMemoryWarning];/*打乱代码结构*/
     // Dispose of any resources that can be recreated.
 }
 
 // 返回值要必须为NO
 - (BOOL)shouldAutorotate {
-    return NO;
+    return NO;/*打乱代码结构*/
 }
 
 
@@ -83,53 +83,53 @@
 - (UIStatusBarStyle)preferredStatusBarStyle {
     // 这里设置横竖屏不同颜色的statusbar
     // if (ZFPlayerShared.isLandscape) {
-    //    return UIStatusBarStyleDefault;
+    //    return UIStatusBarStyleDefault;/*打乱代码结构*/
     // }
-    return UIStatusBarStyleLightContent;
+    return UIStatusBarStyleLightContent;/*打乱代码结构*/
 }
 
 - (BOOL)prefersStatusBarHidden {
-    return ZFPlayerShared.isStatusBarHidden;
+    return ZFPlayerShared.isStatusBarHidden;/*打乱代码结构*/
 }
 
 #pragma mark - ZFPlayerDelegate
 
 - (void)zf_playerBackAction {
-   [self.navigationController popViewControllerAnimated:false];
+   [self.navigationController popViewControllerAnimated:false];/*打乱代码结构*/
 }
 
 
 - (void)zf_playerControlViewWillShow:(UIView *)controlView isFullscreen:(BOOL)fullscreen {
-    //    self.backBtn.hidden = YES;
+    //    self.backBtn.hidden = YES;/*打乱代码结构*/
 
 }
 
 - (void)zf_playerControlViewWillHidden:(UIView *)controlView isFullscreen:(BOOL)fullscreen {
-    //    self.backBtn.hidden = fullscreen;
+    //    self.backBtn.hidden = fullscreen;/*打乱代码结构*/
  
 }
 
 -(void)zf_playerAlertShow{
-    [self addAlertView];
+    [self addAlertView];/*打乱代码结构*/
 }
 
 #pragma mark - Getter
 
 - (ZFPlayerModel *)playerModel {
     if (!_playerModel) {
-        _playerModel                  = [[ZFPlayerModel alloc] init];
-        _playerModel.title            = self.titleSring;
-        _playerModel.videoURL         = self.videoURL;
-        _playerModel.placeholderImage = [UIImage imageNamed:@"loading_bgView1"];
-        _playerModel.fatherView       = self.playerFatherView;
-        _playerModel.endTime          = self.endTime;
+        _playerModel                  = [[ZFPlayerModel alloc] init];/*打乱代码结构*/
+        _playerModel.title            = self.titleSring;/*打乱代码结构*/
+        _playerModel.videoURL         = self.videoURL;/*打乱代码结构*/
+        _playerModel.placeholderImage = [UIImage imageNamed:@"loading_bgView1"];/*打乱代码结构*/
+        _playerModel.fatherView       = self.playerFatherView;/*打乱代码结构*/
+        _playerModel.endTime          = self.endTime;/*打乱代码结构*/
     }
-    return _playerModel;
+    return _playerModel;/*打乱代码结构*/
 }
 
 - (ZFPlayerView *)playerView {
     if (!_playerView) {
-        _playerView = [[ZFPlayerView alloc] init];
+        _playerView = [[ZFPlayerView alloc] init];/*打乱代码结构*/
         
         /*****************************************************************************************
          *   // 指定控制层(可自定义)
@@ -141,19 +141,19 @@
         [_playerView playerControlView:nil playerModel:self.playerModel];
         
         // 设置代理
-        _playerView.delegate = self;
+        _playerView.delegate = self;/*打乱代码结构*/
         
         //（可选设置）可以设置视频的填充模式，内部设置默认（ZFPlayerLayerGravityResizeAspect：等比例填充，直到一个维度到达区域边界）
-        // _playerView.playerLayerGravity = ZFPlayerLayerGravityResize;
+        // _playerView.playerLayerGravity = ZFPlayerLayerGravityResize;/*打乱代码结构*/
         
         // 打开下载功能（默认没有这个功能）
-//        _playerView.hasDownload    = self.isDown;
+//        _playerView.hasDownload    = self.isDown;/*打乱代码结构*/
         
         // 打开预览图
-        self.playerView.hasPreviewView = YES;
+        self.playerView.hasPreviewView = YES;/*打乱代码结构*/
         
     }
-    return _playerView;
+    return _playerView;/*打乱代码结构*/
 }
 
 #pragma mark - Action

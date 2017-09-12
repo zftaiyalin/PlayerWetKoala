@@ -12,44 +12,66 @@
 #import "RedBoxModel.h"
 #import "AppUnitl.h"
 #import "NewViewController.h"
-@import Firebase;
+#import "ViewController.h"
+@import Firebase;/*打乱代码结构*/
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    /*
+     打乱代码结构
+     */
+    UMConfigInstance.appKey = @"59550dcc9f06fd1ad300003c";/*打乱代码结构*/
+    UMConfigInstance.channelId = @"App Store";/*打乱代码结构*/
+    [MobClick startWithConfigure:UMConfigInstance];/*打乱代码结构*///配置以上参数后调用此方法初始化SDK！
     
-    UMConfigInstance.appKey = @"59550dcc9f06fd1ad300003c";
-    UMConfigInstance.channelId = @"App Store";
-    [MobClick startWithConfigure:UMConfigInstance];//配置以上参数后调用此方法初始化SDK！
     
+    [GADMobileAds configureWithApplicationID:@"ca-app-pub-3676267735536366~1990082537"];/*打乱代码结构*/
     
-    [GADMobileAds configureWithApplicationID:@"ca-app-pub-3676267735536366~1990082537"];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];/*打乱代码结构*/
     //设置格式：zzz表示时区
-    [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];
+    [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];/*打乱代码结构*/
     //NSDate转NSString
-    NSString *currentDateString = [dateFormatter stringFromDate:[NSDate date]];
-    NSError *error = nil;
+    NSString *currentDateString = [dateFormatter stringFromDate:[NSDate date]];/*打乱代码结构*/
+    NSError *error = nil;/*打乱代码结构*/
     
-    NSString *ss = [NSString stringWithFormat:@"http://opmams01o.bkt.clouddn.com/WetKoala.json?v=%@",currentDateString];
-    NSURL *xcfURL = [NSURL URLWithString:ss];
-    NSString *htmlString = [NSString stringWithContentsOfURL:xcfURL encoding:NSUTF8StringEncoding error:&error];
+    NSString *ss = [NSString stringWithFormat:@"http://opmams01o.bkt.clouddn.com/WetKoala.json?v=%@",currentDateString];/*打乱代码结构*/
+    NSURL *xcfURL = [NSURL URLWithString:ss];/*打乱代码结构*/
+    NSString *htmlString = [NSString stringWithContentsOfURL:xcfURL encoding:NSUTF8StringEncoding error:&error];/*打乱代码结构*/
     
-    AppModel *model = [AppModel yy_modelWithJSON:htmlString];
+    AppModel *model = [AppModel yy_modelWithJSON:htmlString];/*打乱代码结构*/
     
-    [AppUnitl sharedManager].ssmodel = model;
-    [AppUnitl sharedManager].isGame = NO;
-    [AppUnitl sharedManager].ssmodel.appstatus.isShow = YES;
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController =[[UINavigationController alloc] initWithRootViewController:[[NewViewController alloc] init]] ;
-    [self.window makeKeyAndVisible];
+    [AppUnitl sharedManager].ssmodel = model;/*打乱代码结构*/
+    [AppUnitl sharedManager].isGame = NO;/*打乱代码结构*/
     
-    return YES;
+    if (![AppUnitl getPreferredLanguage:[AppUnitl sharedManager].ssmodel.appstatus.language]) {
+        [AppUnitl sharedManager].ssmodel.appstatus.isShow = NO;/*打乱代码结构*/
+    }
+//    [AppUnitl sharedManager].ssmodel.appstatus.isShow = YES;/*打乱代码结构*/
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];/*打乱代码结构*/
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];/*打乱代码结构*/
+    self.window.backgroundColor = [UIColor whiteColor];/*打乱代码结构*/
+   
+    
+    
+    if (![AppUnitl sharedManager].ssmodel.appstatus.isShow) {
+        [AppUnitl sharedManager].isGame = YES;/*打乱代码结构*/
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];/*打乱代码结构*/
+        //将取出的storyboard里面的控制器被所需的控制器指着。
+        ViewController *jVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"WetViewController"];/*打乱代码结构*/
+//        [UIApplication sharedApplication].keyWindow.rootViewController = jVC;/*打乱代码结构*/
+        
+        self.window.rootViewController = jVC;/*打乱代码结构*/
+        [self.window makeKeyAndVisible];/*打乱代码结构*/
+    }else{
+    
+        self.window.rootViewController =[[UINavigationController alloc] initWithRootViewController:[[NewViewController alloc] init]] ;/*打乱代码结构*/
+        [self.window makeKeyAndVisible];/*打乱代码结构*/
+    }
+    
+    return YES;/*打乱代码结构*/
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -59,8 +81,8 @@
     
     // pause sprite kit
     if ([AppUnitl sharedManager].isGame) {
-        SKView *view = (SKView *)self.window.rootViewController.view;
-        view.paused = YES;
+        SKView *view = (SKView *)self.window.rootViewController.view;/*打乱代码结构*/
+        view.paused = YES;/*打乱代码结构*/
     }
     
 }
@@ -73,7 +95,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    // Called as part of the transition from the background to the inactive state;/*打乱代码结构*/ here you can undo many of the changes made on entering the background.
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -82,8 +104,8 @@
     
     // resume sprite kit
     if ([AppUnitl sharedManager].isGame) {
-    SKView *view = (SKView *)self.window.rootViewController.view;
-    view.paused = NO;
+    SKView *view = (SKView *)self.window.rootViewController.view;/*打乱代码结构*/
+    view.paused = NO;/*打乱代码结构*/
     }
 }
 

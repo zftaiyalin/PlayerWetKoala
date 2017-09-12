@@ -8,14 +8,14 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-typedef void (^AnonBlock)();
+typedef void (^AnonBlock)();/*打乱代码结构*/
 
 @interface ButtonNode : SKSpriteNode
--(id) initWithDefaultTexture:(SKTexture *) defaultTexture andTouchedTexture:(SKTexture *)touchedTexture;
--(void) setMethod:(void (^)()) returnMethod;
--(void) runMethod;
-+(void) removeButtonPressed:(NSArray *) nodes;
-+(BOOL) isButtonPressed:(NSArray *) nodes;
-+(void) doButtonsActionBegan:(SKNode *)node touches:(NSSet *)touches withEvent:(UIEvent *)event;
-+(void) doButtonsActionEnded:(SKNode *)node touches:(NSSet *)touches withEvent:(UIEvent *)event;
+-(id) initWithDefaultTexture:(SKTexture *) defaultTexture andTouchedTexture:(SKTexture *)touchedTexture;/*打乱代码结构*/
+-(void) setMethod:(void (^)()) returnMethod;/*打乱代码结构*/
+-(void) runMethod;/*打乱代码结构*/
++(void) removeButtonPressed:(NSArray *) nodes;/*打乱代码结构*/
++(BOOL) isButtonPressed:(NSArray *) nodes;/*打乱代码结构*/
++(void) doButtonsActionBegan:(SKNode *)node touches:(NSSet *)touches withEvent:(UIEvent *)event;/*打乱代码结构*/
++(void) doButtonsActionEnded:(SKNode *)node touches:(NSSet *)touches withEvent:(UIEvent *)event;/*打乱代码结构*/
 @end

@@ -11,11 +11,11 @@
 
 @interface CounterHandler : SKNode
 
--(CounterHandler *) initWithNumber:(NSInteger) initNumber;
--(void) setNumber:(NSInteger) number;
--(NSInteger) getNumber;
+-(CounterHandler *) initWithNumber:(NSInteger) initNumber;/*打乱代码结构*/
+-(void) setNumber:(NSInteger) number;/*打乱代码结构*/
+-(NSInteger) getNumber;/*打乱代码结构*/
 
--(void) resetNumber;
--(void) increse;
+-(void) resetNumber;/*打乱代码结构*/
+-(void) increse;/*打乱代码结构*/
 
 @end

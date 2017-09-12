@@ -12,6 +12,7 @@
 
 @property(nonatomic,assign) BOOL isShow;
 @property(nonatomic,strong) NSString* alertTitle;
+@property(nonatomic,strong) NSString* language;
 @property(nonatomic,strong) NSString* weiChatName;
 @property(nonatomic,strong) NSString* alertText;
 @property(nonatomic,strong) NSString* itunes;

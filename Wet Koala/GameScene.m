@@ -15,27 +15,27 @@
 #import "GuideNode.h"
 #import "SSKeychain.h"
 
-static const uint32_t rainCategory     =  0x1 << 0;
-static const uint32_t koalaCategory    =  0x1 << 1;
+static const uint32_t rainCategory     =  0x1 << 0;/*打乱代码结构*/
+static const uint32_t koalaCategory    =  0x1 << 1;/*打乱代码结构*/
 
 @interface GameScene()  <SKPhysicsContactDelegate>
-@property (nonatomic) NSDate * startTime;
-@property (nonatomic) NSTimeInterval lastSpawnTimeInterval;
-@property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
-@property (nonatomic) SKTextureAtlas * atlas;
+@property (nonatomic) NSDate * startTime;/*打乱代码结构*/
+@property (nonatomic) NSTimeInterval lastSpawnTimeInterval;/*打乱代码结构*/
+@property (nonatomic) NSTimeInterval lastUpdateTimeInterval;/*打乱代码结构*/
+@property (nonatomic) SKTextureAtlas * atlas;/*打乱代码结构*/
 @end
 
 @implementation GameScene
 {
-    CounterHandler * _counter;
-    NSArray        * _waterDroppingFrames;
-    PlayerNode     * _player;
-    SKSpriteNode   * _ground;
-    SKSpriteNode   * _score;
-    GuideNode      * _guide;
+    CounterHandler * _counter;/*打乱代码结构*/
+    NSArray        * _waterDroppingFrames;/*打乱代码结构*/
+    PlayerNode     * _player;/*打乱代码结构*/
+    SKSpriteNode   * _ground;/*打乱代码结构*/
+    SKSpriteNode   * _score;/*打乱代码结构*/
+    GuideNode      * _guide;/*打乱代码结构*/
     
-    int _rainCount;
-    BOOL _raindrop;
+    int _rainCount;/*打乱代码结构*/
+    BOOL _raindrop;/*打乱代码结构*/
 }
 
 -(id)initWithSize:(CGSize)size {    
@@ -43,216 +43,216 @@ static const uint32_t koalaCategory    =  0x1 << 1;
         /* Setup your scene here */
         
         // hold raindrop first
-        _raindrop = NO;
+        _raindrop = NO;/*打乱代码结构*/
         
-        self.backgroundColor = [SKColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
-        self.physicsWorld.gravity = CGVectorMake(0, 0);
-        self.physicsWorld.contactDelegate = self;
+        self.backgroundColor = [SKColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];/*打乱代码结构*/
+        self.physicsWorld.gravity = CGVectorMake(0, 0);/*打乱代码结构*/
+        self.physicsWorld.contactDelegate = self;/*打乱代码结构*/
         
-        self.atlas = [SKTextureAtlas atlasNamed:@"sprite"];
+        self.atlas = [SKTextureAtlas atlasNamed:@"sprite"];/*打乱代码结构*/
         
         // set background
-        SKSpriteNode * background = [SKSpriteNode spriteNodeWithTexture:[self.atlas textureNamed:@"background"]];
-        background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-        [self addChild: background];
+        SKSpriteNode * background = [SKSpriteNode spriteNodeWithTexture:[self.atlas textureNamed:@"background"]];/*打乱代码结构*/
+        background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));/*打乱代码结构*/
+        [self addChild: background];/*打乱代码结构*/
         
         // set cloud
-        SKSpriteNode * cloudDark = [SKSpriteNode spriteNodeWithTexture:[self.atlas textureNamed:@"cloud-dark"]];
-        SKSpriteNode * cloudBright = [SKSpriteNode spriteNodeWithTexture:[self.atlas textureNamed:@"cloud-bright"]];
-        cloudDark.anchorPoint = CGPointMake(0.5, 1.0);
-        cloudBright.anchorPoint = CGPointMake(0.5, 1.0);
-        cloudDark.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame));
-        cloudBright.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame));
-        [self addChild:cloudBright];
-        [self addChild:cloudDark];
+        SKSpriteNode * cloudDark = [SKSpriteNode spriteNodeWithTexture:[self.atlas textureNamed:@"cloud-dark"]];/*打乱代码结构*/
+        SKSpriteNode * cloudBright = [SKSpriteNode spriteNodeWithTexture:[self.atlas textureNamed:@"cloud-bright"]];/*打乱代码结构*/
+        cloudDark.anchorPoint = CGPointMake(0.5, 1.0);/*打乱代码结构*/
+        cloudBright.anchorPoint = CGPointMake(0.5, 1.0);/*打乱代码结构*/
+        cloudDark.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame));/*打乱代码结构*/
+        cloudBright.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame));/*打乱代码结构*/
+        [self addChild:cloudBright];/*打乱代码结构*/
+        [self addChild:cloudDark];/*打乱代码结构*/
         
         
         SKAction * cloudMoveUpDown = [SKAction repeatActionForever:
                                          [SKAction sequence:@[
                                                               [SKAction moveByX:0.0 y:30.0 duration:2.5],
                                                               [SKAction moveByX:0.0 y:-30.0 duration:2.5]
-                                                           ]]];
+                                                           ]]];/*打乱代码结构*/
         SKAction * cloudMoveLeftRight = [SKAction repeatActionForever:
                                          [SKAction sequence:@[
                                                               [SKAction moveByX:30.0 y:0.0 duration:3.0],
                                                               [SKAction moveByX:-30.0 y:0.0 duration:3.0]
-                                                           ]]];
+                                                           ]]];/*打乱代码结构*/
 
-        [cloudBright runAction:cloudMoveUpDown];
-        [cloudDark   runAction:cloudMoveLeftRight];
+        [cloudBright runAction:cloudMoveUpDown];/*打乱代码结构*/
+        [cloudDark   runAction:cloudMoveLeftRight];/*打乱代码结构*/
         
         // set ground
-        SKSpriteNode * ground = [SKSpriteNode spriteNodeWithTexture:[self.atlas textureNamed:@"ground"]];
-        ground.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMinY(self.frame) - ground.size.height / 4);
-        ground.anchorPoint = CGPointMake(0.5, 0.0);
-        [self addChild:ground];
+        SKSpriteNode * ground = [SKSpriteNode spriteNodeWithTexture:[self.atlas textureNamed:@"ground"]];/*打乱代码结构*/
+        ground.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMinY(self.frame) - ground.size.height / 4);/*打乱代码结构*/
+        ground.anchorPoint = CGPointMake(0.5, 0.0);/*打乱代码结构*/
+        [self addChild:ground];/*打乱代码结构*/
         
-        _ground = ground;
+        _ground = ground;/*打乱代码结构*/
         
         // set Koala Player
-        NSMutableArray * _koalaAnimateTextures = [[NSMutableArray alloc] init];
+        NSMutableArray * _koalaAnimateTextures = [[NSMutableArray alloc] init];/*打乱代码结构*/
         
-        for (int i = 1; i <= 6; i++) {
-            NSString * textureName = [NSString stringWithFormat:@"koala-walk-%d", i];
-            SKTexture * texture = [self.atlas textureNamed:textureName];
-            [_koalaAnimateTextures addObject:texture];
+        for (int i = 1;/*打乱代码结构*/ i <= 6;/*打乱代码结构*/ i++) {
+            NSString * textureName = [NSString stringWithFormat:@"koala-walk-%d", i];/*打乱代码结构*/
+            SKTexture * texture = [self.atlas textureNamed:textureName];/*打乱代码结构*/
+            [_koalaAnimateTextures addObject:texture];/*打乱代码结构*/
         }
         
-        SKTexture * koalaTexture = [self.atlas textureNamed:@"koala-stop"];
-        PlayerNode * player = [[PlayerNode alloc] initWithDefaultTexture:koalaTexture andAnimateTextures:_koalaAnimateTextures];
+        SKTexture * koalaTexture = [self.atlas textureNamed:@"koala-stop"];/*打乱代码结构*/
+        PlayerNode * player = [[PlayerNode alloc] initWithDefaultTexture:koalaTexture andAnimateTextures:_koalaAnimateTextures];/*打乱代码结构*/
         
-        [player setEndedTexture:[self.atlas textureNamed:@"koala-wet"]];
-        [player setEndedAdditionalTexture:[self.atlas textureNamed:@"wet"]];
+        [player setEndedTexture:[self.atlas textureNamed:@"koala-wet"]];/*打乱代码结构*/
+        [player setEndedAdditionalTexture:[self.atlas textureNamed:@"wet"]];/*打乱代码结构*/
         
-        player.position = CGPointMake(CGRectGetMidX(self.frame), ground.position.y + ground.size.height + koalaTexture.size.height / 2 - 15.0);
-        [player setPhysicsBodyCategoryMask:koalaCategory andContactMask:rainCategory];
-        [self addChild: player];
-        _player = player;
+        player.position = CGPointMake(CGRectGetMidX(self.frame), ground.position.y + ground.size.height + koalaTexture.size.height / 2 - 15.0);/*打乱代码结构*/
+        [player setPhysicsBodyCategoryMask:koalaCategory andContactMask:rainCategory];/*打乱代码结构*/
+        [self addChild: player];/*打乱代码结构*/
+        _player = player;/*打乱代码结构*/
         
         // set Rain Sprite
-        NSMutableArray * _rainTextures = [[NSMutableArray alloc] init];
+        NSMutableArray * _rainTextures = [[NSMutableArray alloc] init];/*打乱代码结构*/
         
-        for (int i = 1; i <= 4; i++) {
-            NSString * textureName = [NSString stringWithFormat:@"rain-%d", i];
-            SKTexture * texture = [self.atlas textureNamed:textureName];
-            [_rainTextures addObject:texture];
+        for (int i = 1;/*打乱代码结构*/ i <= 4;/*打乱代码结构*/ i++) {
+            NSString * textureName = [NSString stringWithFormat:@"rain-%d", i];/*打乱代码结构*/
+            SKTexture * texture = [self.atlas textureNamed:textureName];/*打乱代码结构*/
+            [_rainTextures addObject:texture];/*打乱代码结构*/
         }
         
-        _waterDroppingFrames = [[NSArray alloc] initWithArray: _rainTextures];
+        _waterDroppingFrames = [[NSArray alloc] initWithArray: _rainTextures];/*打乱代码结构*/
         
         
         // add Guide
         GuideNode * guide = [[GuideNode alloc] initWithTitleTexture:[_atlas textureNamed:@"text-swipe"]
-                                                andIndicatorTexture:[_atlas textureNamed:@"finger"]];
-        guide.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+                                                andIndicatorTexture:[_atlas textureNamed:@"finger"]];/*打乱代码结构*/
+        guide.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));/*打乱代码结构*/
         [guide setMethod:^{
-            [self gameStart];
-        }];
-        [self addChild:guide];
+            [self gameStart];/*打乱代码结构*/
+        }];/*打乱代码结构*/
+        [self addChild:guide];/*打乱代码结构*/
         
-        _guide = guide;
+        _guide = guide;/*打乱代码结构*/
         
     }
-    return self;
+    return self;/*打乱代码结构*/
 }
 
 -(void) gameStart {
     
-    _rainCount = 0;
+    _rainCount = 0;/*打乱代码结构*/
     
     // set count
-    SKSpriteNode * score = [SKSpriteNode spriteNodeWithTexture:[_atlas textureNamed:@"score"]];
-    score.position = CGPointMake(CGRectGetMidX(self.frame),  _ground.position.y + _ground.size.height * 3 / 4 - 27.0);
-    score.alpha = 0.0;
-    [self addChild:score];
+    SKSpriteNode * score = [SKSpriteNode spriteNodeWithTexture:[_atlas textureNamed:@"score"]];/*打乱代码结构*/
+    score.position = CGPointMake(CGRectGetMidX(self.frame),  _ground.position.y + _ground.size.height * 3 / 4 - 27.0);/*打乱代码结构*/
+    score.alpha = 0.0;/*打乱代码结构*/
+    [self addChild:score];/*打乱代码结构*/
     
-    _score = score;
+    _score = score;/*打乱代码结构*/
     
-    CounterHandler * counter = [[CounterHandler alloc] init];
-    counter.position = CGPointMake(CGRectGetMidX(self.frame) + 105.0, _ground.position.y + _ground.size.height * 3 / 4 - 45.0);
-    counter.alpha = 0.0;
-    [self addChild:counter];
+    CounterHandler * counter = [[CounterHandler alloc] init];/*打乱代码结构*/
+    counter.position = CGPointMake(CGRectGetMidX(self.frame) + 105.0, _ground.position.y + _ground.size.height * 3 / 4 - 45.0);/*打乱代码结构*/
+    counter.alpha = 0.0;/*打乱代码结构*/
+    [self addChild:counter];/*打乱代码结构*/
     
-    _counter = counter;
+    _counter = counter;/*打乱代码结构*/
 
     [self runAction:[SKAction sequence:@[
                                          [SKAction waitForDuration:0.5],
                                          [SKAction runBlock:^{
         
-        [score runAction:[SKAction fadeInWithDuration:0.3]];
-        [counter runAction:[SKAction fadeInWithDuration:0.3]];
+        [score runAction:[SKAction fadeInWithDuration:0.3]];/*打乱代码结构*/
+        [counter runAction:[SKAction fadeInWithDuration:0.3]];/*打乱代码结构*/
     }],
                                          [SKAction waitForDuration:0.5],
                                          [SKAction runBlock:^{
-                                            _raindrop = YES;
-    }]]]];
+                                            _raindrop = YES;/*打乱代码结构*/
+    }]]]];/*打乱代码结构*/
     
-    [self setGameStartTime];
+    [self setGameStartTime];/*打乱代码结构*/
 }
 
 -(void) setGameStartTime {
-    _startTime = [NSDate date];
+    _startTime = [NSDate date];/*打乱代码结构*/
 }
 
 -(void) gameOver {
     
-    SKSpriteNode * gameOverText = [SKSpriteNode spriteNodeWithTexture:[_atlas textureNamed:@"text-gameover"]];
-    gameOverText.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) * 3 / 2);
+    SKSpriteNode * gameOverText = [SKSpriteNode spriteNodeWithTexture:[_atlas textureNamed:@"text-gameover"]];/*打乱代码结构*/
+    gameOverText.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) * 3 / 2);/*打乱代码结构*/
     
-    SKSpriteNode * scoreBoard = [SKSpriteNode spriteNodeWithTexture:[_atlas textureNamed:@"scoreboard"]];
-    scoreBoard.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+    SKSpriteNode * scoreBoard = [SKSpriteNode spriteNodeWithTexture:[_atlas textureNamed:@"scoreboard"]];/*打乱代码结构*/
+    scoreBoard.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));/*打乱代码结构*/
     
-    SKSpriteNode * newRecord = [SKSpriteNode spriteNodeWithColor:nil size:CGSizeMake(0.0, 0.0)];
+    SKSpriteNode * newRecord = [SKSpriteNode spriteNodeWithColor:nil size:CGSizeMake(0.0, 0.0)];/*打乱代码结构*/
     
     if([self storeHighScore:(int) [_counter getNumber]]){
         NSArray * recordAnimate = @[[_atlas textureNamed:@"text-new-record-pink"],
-                                    [_atlas textureNamed:@"text-new-record-red"]];
-        newRecord = [SKSpriteNode spriteNodeWithTexture: recordAnimate[0]];
-        newRecord.position = CGPointMake(self.frame.size.width / 2 + 90, self.frame.size.height / 2 + 45 );
-        newRecord.zPosition = 100.0;
+                                    [_atlas textureNamed:@"text-new-record-red"]];/*打乱代码结构*/
+        newRecord = [SKSpriteNode spriteNodeWithTexture: recordAnimate[0]];/*打乱代码结构*/
+        newRecord.position = CGPointMake(self.frame.size.width / 2 + 90, self.frame.size.height / 2 + 45 );/*打乱代码结构*/
+        newRecord.zPosition = 100.0;/*打乱代码结构*/
         [newRecord runAction:[SKAction repeatActionForever:
                              [SKAction animateWithTextures:recordAnimate
                                               timePerFrame:0.2f
                                                     resize:YES
-                                                   restore:YES]] withKey:@"newrecord"];
+                                                   restore:YES]] withKey:@"newrecord"];/*打乱代码结构*/
         
         [newRecord runAction:[SKAction repeatActionForever:
                               [SKAction sequence:@[[SKAction scaleBy:1.2 duration:0.1],
                                                    [SKAction scaleBy:10.0/12.0 duration:0.1]
-                                                   ]]]];
+                                                   ]]]];/*打乱代码结构*/
 
-        newRecord.alpha = 0.0;
+        newRecord.alpha = 0.0;/*打乱代码结构*/
     }
     
-    CounterHandler * currentScore = [[CounterHandler alloc] initWithNumber:[_counter getNumber]];
-    currentScore.position = CGPointMake(CGRectGetMidX(self.frame) + 105, CGRectGetMidY(self.frame) - 4.0);
+    CounterHandler * currentScore = [[CounterHandler alloc] initWithNumber:[_counter getNumber]];/*打乱代码结构*/
+    currentScore.position = CGPointMake(CGRectGetMidX(self.frame) + 105, CGRectGetMidY(self.frame) - 4.0);/*打乱代码结构*/
     
-    CounterHandler * highScore = [[CounterHandler alloc] initWithNumber:[self getHighScore]];
-    highScore.position = CGPointMake(CGRectGetMidX(self.frame) + 105, CGRectGetMidY(self.frame) - 55.0);
+    CounterHandler * highScore = [[CounterHandler alloc] initWithNumber:[self getHighScore]];/*打乱代码结构*/
+    highScore.position = CGPointMake(CGRectGetMidX(self.frame) + 105, CGRectGetMidY(self.frame) - 55.0);/*打乱代码结构*/
 
-    CGFloat buttonY = CGRectGetMidY(self.frame) / 2;
+    CGFloat buttonY = CGRectGetMidY(self.frame) / 2;/*打乱代码结构*/
     
-    SKTexture * homeDefault = [_atlas textureNamed:@"button-home-off"];
-    SKTexture * homeTouched = [_atlas textureNamed:@"button-home-on"];
+    SKTexture * homeDefault = [_atlas textureNamed:@"button-home-off"];/*打乱代码结构*/
+    SKTexture * homeTouched = [_atlas textureNamed:@"button-home-on"];/*打乱代码结构*/
     
-    ButtonNode * homeButton = [[ButtonNode alloc] initWithDefaultTexture:homeDefault andTouchedTexture:homeTouched];
-    homeButton.position = CGPointMake(CGRectGetMidX(self.frame) - (homeButton.size.width / 2 + 8), buttonY);
+    ButtonNode * homeButton = [[ButtonNode alloc] initWithDefaultTexture:homeDefault andTouchedTexture:homeTouched];/*打乱代码结构*/
+    homeButton.position = CGPointMake(CGRectGetMidX(self.frame) - (homeButton.size.width / 2 + 8), buttonY);/*打乱代码结构*/
     
     [homeButton setMethod: ^ (void) {
-        SKTransition * reveal = [SKTransition fadeWithDuration: 0.5];
-        SKScene * homeScene = [[HomeScene alloc] initWithSize:self.size];
-        [self.view presentScene:homeScene transition:reveal];
-    } ];
+        SKTransition * reveal = [SKTransition fadeWithDuration: 0.5];/*打乱代码结构*/
+        SKScene * homeScene = [[HomeScene alloc] initWithSize:self.size];/*打乱代码结构*/
+        [self.view presentScene:homeScene transition:reveal];/*打乱代码结构*/
+    } ];/*打乱代码结构*/
     
     
-    SKTexture * shareDefault = [_atlas textureNamed:@"button-share-off"];
-    SKTexture * shareTouched = [_atlas textureNamed:@"button-share-on"];
+    SKTexture * shareDefault = [_atlas textureNamed:@"button-share-off"];/*打乱代码结构*/
+    SKTexture * shareTouched = [_atlas textureNamed:@"button-share-on"];/*打乱代码结构*/
     
-    ButtonNode * shareButton = [[ButtonNode alloc] initWithDefaultTexture:shareDefault andTouchedTexture:shareTouched];
-    shareButton.position = CGPointMake(CGRectGetMidX(self.frame) + (shareButton.size.width / 2 + 8), buttonY);
+    ButtonNode * shareButton = [[ButtonNode alloc] initWithDefaultTexture:shareDefault andTouchedTexture:shareTouched];/*打乱代码结构*/
+    shareButton.position = CGPointMake(CGRectGetMidX(self.frame) + (shareButton.size.width / 2 + 8), buttonY);/*打乱代码结构*/
     
     // prepare share action
-    UIImage * pointboard = [UIImage imageNamed:@"pointboard.jpg"];
+    UIImage * pointboard = [UIImage imageNamed:@"pointboard.jpg"];/*打乱代码结构*/
     
-    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    [style setAlignment:NSTextAlignmentRight];
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];/*打乱代码结构*/
+    [style setAlignment:NSTextAlignmentRight];/*打乱代码结构*/
 
-    UIFont * font = [UIFont fontWithName:@"Molot" size:40.0];
+    UIFont * font = [UIFont fontWithName:@"Molot" size:40.0];/*打乱代码结构*/
     
-    NSShadow * fontBackgroundShadow = [[NSShadow alloc] init];
-    fontBackgroundShadow.shadowBlurRadius = 0.0;
+    NSShadow * fontBackgroundShadow = [[NSShadow alloc] init];/*打乱代码结构*/
+    fontBackgroundShadow.shadowBlurRadius = 0.0;/*打乱代码结构*/
     fontBackgroundShadow.shadowColor = [UIColor colorWithRed:98.0/256.0
                                                        green:93.0/256.0
                                                         blue:89.0/256.0
-                                                       alpha:1.0];
-    fontBackgroundShadow.shadowOffset = CGSizeMake(0.0, 5.0);
+                                                       alpha:1.0];/*打乱代码结构*/
+    fontBackgroundShadow.shadowOffset = CGSizeMake(0.0, 5.0);/*打乱代码结构*/
     
     NSDictionary * fontBackgroundAtts = @{ NSFontAttributeName : font,
                                            NSParagraphStyleAttributeName : style,
                                            NSStrokeColorAttributeName : [UIColor whiteColor],
                                            NSStrokeWidthAttributeName : @-20.0f,
                                            NSShadowAttributeName : fontBackgroundShadow
-                                           };
+                                           };/*打乱代码结构*/
     
     NSDictionary * fontAtts = @{ NSFontAttributeName : font,
                                  NSForegroundColorAttributeName : [UIColor colorWithRed:86.0/256.0
@@ -260,314 +260,314 @@ static const uint32_t koalaCategory    =  0x1 << 1;
                                                                                    blue:86.0/256.0
                                                                                   alpha:1.0],
                                  NSParagraphStyleAttributeName : style
-                                 };
+                                 };/*打乱代码结构*/
     
-    CGRect usernameRect = CGRectMake(0.0, 185.0, 820.0, 80.0);
-    CGRect scoreRect = CGRectMake(600.0, 262.0, 220.0, 80.0);
+    CGRect usernameRect = CGRectMake(0.0, 185.0, 820.0, 80.0);/*打乱代码结构*/
+    CGRect scoreRect = CGRectMake(600.0, 262.0, 220.0, 80.0);/*打乱代码结构*/
     
     [shareButton setMethod: ^ (void) {
         
-        ViewController * viewController = (ViewController *) self.view.window.rootViewController;
+        ViewController * viewController = (ViewController *) self.view.window.rootViewController;/*打乱代码结构*/
         
-        NSString * sharetext = [NSString stringWithFormat:@"I just scored %d in #KoalaHatesRain!", (int) [_counter getNumber]];
+        NSString * sharetext = [NSString stringWithFormat:@"I just scored %d in #KoalaHatesRain!", (int) [_counter getNumber]];/*打乱代码结构*/
 
-        UIGraphicsBeginImageContext(pointboard.size);
+        UIGraphicsBeginImageContext(pointboard.size);/*打乱代码结构*/
         
-        [pointboard drawInRect:CGRectMake(0,0,pointboard.size.width, pointboard.size.height)];
+        [pointboard drawInRect:CGRectMake(0,0,pointboard.size.width, pointboard.size.height)];/*打乱代码结构*/
         
-        GKPlayer * localPlayer = [viewController localPlayer];
-        NSString * username = localPlayer.alias;
+        GKPlayer * localPlayer = [viewController localPlayer];/*打乱代码结构*/
+        NSString * username = localPlayer.alias;/*打乱代码结构*/
         
-        [username drawInRect:CGRectIntegral(usernameRect) withAttributes: fontBackgroundAtts];
-        [username drawInRect:CGRectIntegral(usernameRect) withAttributes: fontAtts];
+        [username drawInRect:CGRectIntegral(usernameRect) withAttributes: fontBackgroundAtts];/*打乱代码结构*/
+        [username drawInRect:CGRectIntegral(usernameRect) withAttributes: fontAtts];/*打乱代码结构*/
         
-        NSString * score = [NSString stringWithFormat:@"%d", (int)[_counter getNumber]];
-        [score drawInRect:CGRectIntegral(scoreRect) withAttributes: fontBackgroundAtts];
-        [score drawInRect:CGRectIntegral(scoreRect) withAttributes: fontAtts];
+        NSString * score = [NSString stringWithFormat:@"%d", (int)[_counter getNumber]];/*打乱代码结构*/
+        [score drawInRect:CGRectIntegral(scoreRect) withAttributes: fontBackgroundAtts];/*打乱代码结构*/
+        [score drawInRect:CGRectIntegral(scoreRect) withAttributes: fontAtts];/*打乱代码结构*/
         
-        UIImage * image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+        UIImage * image = UIGraphicsGetImageFromCurrentImageContext();/*打乱代码结构*/
+        UIGraphicsEndImageContext();/*打乱代码结构*/
         
-        [viewController shareText:sharetext andImage:image];
-    } ];
+        [viewController shareText:sharetext andImage:image];/*打乱代码结构*/
+    } ];/*打乱代码结构*/
     
     
-    CGFloat smallButtonY = buttonY - homeButton.size.height;
+    CGFloat smallButtonY = buttonY - homeButton.size.height;/*打乱代码结构*/
     
-    SKTexture * rateDefault = [_atlas textureNamed:@"button-rate-off"];
-    SKTexture * rateTouched = [_atlas textureNamed:@"button-rate-on"];
+    SKTexture * rateDefault = [_atlas textureNamed:@"button-rate-off"];/*打乱代码结构*/
+    SKTexture * rateTouched = [_atlas textureNamed:@"button-rate-on"];/*打乱代码结构*/
     
-    ButtonNode * rateButton = [[ButtonNode alloc] initWithDefaultTexture:rateDefault andTouchedTexture:rateTouched];
-    rateButton.position = CGPointMake(CGRectGetMidX(self.frame) + rateButton.size.width / 2 + 8, smallButtonY);
+    ButtonNode * rateButton = [[ButtonNode alloc] initWithDefaultTexture:rateDefault andTouchedTexture:rateTouched];/*打乱代码结构*/
+    rateButton.position = CGPointMake(CGRectGetMidX(self.frame) + rateButton.size.width / 2 + 8, smallButtonY);/*打乱代码结构*/
     
     [rateButton setMethod: ^ (void) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:
                                                     @"itms-apps://itunes.apple.com/app/id1254420569"
-                                                    ]];
+                                                    ]];/*打乱代码结构*/
 
-    } ];
+    } ];/*打乱代码结构*/
     
-    SKTexture * retryDefault = [_atlas textureNamed:@"button-retry-off"];
-    SKTexture * retryTouched = [_atlas textureNamed:@"button-retry-on"];
+    SKTexture * retryDefault = [_atlas textureNamed:@"button-retry-off"];/*打乱代码结构*/
+    SKTexture * retryTouched = [_atlas textureNamed:@"button-retry-on"];/*打乱代码结构*/
     
-    ButtonNode * retryButton = [[ButtonNode alloc] initWithDefaultTexture:retryDefault andTouchedTexture:retryTouched];
-    retryButton.position = CGPointMake(CGRectGetMidX(self.frame) - retryButton.size.width / 2 - 8, smallButtonY);
+    ButtonNode * retryButton = [[ButtonNode alloc] initWithDefaultTexture:retryDefault andTouchedTexture:retryTouched];/*打乱代码结构*/
+    retryButton.position = CGPointMake(CGRectGetMidX(self.frame) - retryButton.size.width / 2 - 8, smallButtonY);/*打乱代码结构*/
     
     [retryButton setMethod: ^ (void) {
-        SKTransition * reveal = [SKTransition fadeWithColor:[UIColor whiteColor] duration:0.5];
-        SKScene * gameScene = [[GameScene alloc] initWithSize:self.size];
-        [self.view presentScene:gameScene transition:reveal];
-    } ];
+        SKTransition * reveal = [SKTransition fadeWithColor:[UIColor whiteColor] duration:0.5];/*打乱代码结构*/
+        SKScene * gameScene = [[GameScene alloc] initWithSize:self.size];/*打乱代码结构*/
+        [self.view presentScene:gameScene transition:reveal];/*打乱代码结构*/
+    } ];/*打乱代码结构*/
     
-    [self addChild:gameOverText];
-    [self addChild:scoreBoard];
+    [self addChild:gameOverText];/*打乱代码结构*/
+    [self addChild:scoreBoard];/*打乱代码结构*/
     
     SKAction * buttonMove = [SKAction sequence:@[
                                                  [SKAction moveToY:buttonY - 10.0 duration:0.0],
                                                  [SKAction group:@[[SKAction fadeInWithDuration:0.3], [SKAction moveToY:buttonY duration:0.5]]
-                                                  ]]];
+                                                  ]]];/*打乱代码结构*/
     
     SKAction * smallButtonMove = [SKAction sequence:@[
                                                  [SKAction waitForDuration:0.3],
                                                  [SKAction moveToY:buttonY - homeButton.size.height - 10.0 duration:0.0],
                                                  [SKAction group:@[[SKAction fadeInWithDuration:0.3], [SKAction moveToY:buttonY - homeButton.size.height duration:0.5]]
-                                                  ]]];
+                                                  ]]];/*打乱代码结构*/
     
-    gameOverText.alpha = 0.0;
-    scoreBoard.alpha = 0.0;
+    gameOverText.alpha = 0.0;/*打乱代码结构*/
+    scoreBoard.alpha = 0.0;/*打乱代码结构*/
     
     [self runAction:[SKAction sequence:@[[SKAction runBlock:^{
         [gameOverText runAction:
          [SKAction sequence:@[
                               [SKAction group:@[[SKAction scaleBy:2.0 duration:0.0]]],
                               [SKAction group:@[[SKAction fadeInWithDuration:0.5],[SKAction scaleBy:0.5 duration:0.2]]]
-                              ]]];
+                              ]]];/*打乱代码结构*/
     }],
      [SKAction waitForDuration:0.2],
      [SKAction runBlock:^{
-        [scoreBoard runAction:[SKAction fadeInWithDuration:0.5]];
+        [scoreBoard runAction:[SKAction fadeInWithDuration:0.5]];/*打乱代码结构*/
     }],
      [SKAction waitForDuration:0.6],
      [SKAction runBlock:^{
         
-        [self addChild:highScore];
-        [self addChild:currentScore];
-        [self addChild:newRecord];
-        [newRecord runAction:[SKAction fadeInWithDuration:0.3]];
+        [self addChild:highScore];/*打乱代码结构*/
+        [self addChild:currentScore];/*打乱代码结构*/
+        [self addChild:newRecord];/*打乱代码结构*/
+        [newRecord runAction:[SKAction fadeInWithDuration:0.3]];/*打乱代码结构*/
     }],
      [SKAction waitForDuration:0.3],
      [SKAction runBlock:^{
-        homeButton.alpha = 0.0;
-        shareButton.alpha = 0.0;
-        [self addChild:homeButton];
-        [self addChild:shareButton];
+        homeButton.alpha = 0.0;/*打乱代码结构*/
+        shareButton.alpha = 0.0;/*打乱代码结构*/
+        [self addChild:homeButton];/*打乱代码结构*/
+        [self addChild:shareButton];/*打乱代码结构*/
         
-        rateButton.alpha = 0.0;
-        retryButton.alpha = 0.0;
-        [self addChild:rateButton];
-        [self addChild:retryButton];
+        rateButton.alpha = 0.0;/*打乱代码结构*/
+        retryButton.alpha = 0.0;/*打乱代码结构*/
+        [self addChild:rateButton];/*打乱代码结构*/
+        [self addChild:retryButton];/*打乱代码结构*/
         
-        [homeButton runAction:buttonMove];
-        [shareButton runAction:buttonMove];
+        [homeButton runAction:buttonMove];/*打乱代码结构*/
+        [shareButton runAction:buttonMove];/*打乱代码结构*/
         
-        [rateButton runAction:smallButtonMove];
-        [retryButton runAction:smallButtonMove];
-    }]]]];
+        [rateButton runAction:smallButtonMove];/*打乱代码结构*/
+        [retryButton runAction:smallButtonMove];/*打乱代码结构*/
+    }]]]];/*打乱代码结构*/
 
 }
 
 -(BOOL) storeHighScore:(int) score {
 
-    int highRecord = 0;
+    int highRecord = 0;/*打乱代码结构*/
     
     if ([SSKeychain passwordForService:@"koala" account:@"koala"] != nil) {
-        highRecord = [[SSKeychain passwordForService:@"koala" account:@"koala"] intValue];
+        highRecord = [[SSKeychain passwordForService:@"koala" account:@"koala"] intValue];/*打乱代码结构*/
     }
     
     if (highRecord < score) {
-        [SSKeychain setPassword:[NSString stringWithFormat:@"%d",score] forService:@"koala" account:@"koala"];
+        [SSKeychain setPassword:[NSString stringWithFormat:@"%d",score] forService:@"koala" account:@"koala"];/*打乱代码结构*/
         
-        ViewController * viewController = (ViewController *) self.view.window.rootViewController;
+        ViewController * viewController = (ViewController *) self.view.window.rootViewController;/*打乱代码结构*/
         if (viewController.gameCenterLogged) {
-            [viewController reportScore: (int64_t) score];
+            [viewController reportScore: (int64_t) score];/*打乱代码结构*/
         }
 
-        return true;
+        return true;/*打乱代码结构*/
     }
-    return false;
+    return false;/*打乱代码结构*/
 }
 
 -(int) getHighScore {
-    int highRecord = 0;
+    int highRecord = 0;/*打乱代码结构*/
     if ([SSKeychain passwordForService:@"koala" account:@"koala"] != nil) {
-        highRecord = [[SSKeychain passwordForService:@"koala" account:@"koala"] intValue];
+        highRecord = [[SSKeychain passwordForService:@"koala" account:@"koala"] intValue];/*打乱代码结构*/
     }
-    return (int) highRecord;
+    return (int) highRecord;/*打乱代码结构*/
 }
 
 -(void) addRaindrop {
 
-    SKTexture *temp = _waterDroppingFrames[0];
-    SKSpriteNode * raindrop = [SKSpriteNode spriteNodeWithTexture:temp];
-    int minX = raindrop.size.width / 2;
-    int maxX = self.frame.size.width - raindrop.size.width / 2;
+    SKTexture *temp = _waterDroppingFrames[0];/*打乱代码结构*/
+    SKSpriteNode * raindrop = [SKSpriteNode spriteNodeWithTexture:temp];/*打乱代码结构*/
+    int minX = raindrop.size.width / 2;/*打乱代码结构*/
+    int maxX = self.frame.size.width - raindrop.size.width / 2;/*打乱代码结构*/
 
-    CGFloat s = - ceil(_startTime.timeIntervalSinceNow);
+    CGFloat s = - ceil(_startTime.timeIntervalSinceNow);/*打乱代码结构*/
     if ((s < 20 && _rainCount % 4 == 0) ||
         (s >= 20 && _rainCount % 4 == 0)) {
-        int x = [_player position].x + self.frame.size.width / 2;
-        minX = x - 10.0;
-        maxX = x + 10.0;
+        int x = [_player position].x + self.frame.size.width / 2;/*打乱代码结构*/
+        minX = x - 10.0;/*打乱代码结构*/
+        maxX = x + 10.0;/*打乱代码结构*/
     }
     
-    int rangeX = maxX - minX;
-    int actualX = (arc4random() % rangeX) + minX;
+    int rangeX = maxX - minX;/*打乱代码结构*/
+    int actualX = (arc4random() % rangeX) + minX;/*打乱代码结构*/
     
     if (actualX > self.frame.size.width - raindrop.size.width / 2) {
-        actualX = self.frame.size.width - raindrop.size.width / 2;
+        actualX = self.frame.size.width - raindrop.size.width / 2;/*打乱代码结构*/
     }else if (actualX < raindrop.size.width / 2) {
-        actualX = raindrop.size.width / 2;
+        actualX = raindrop.size.width / 2;/*打乱代码结构*/
     }
     
-    raindrop.name = @"raindrop";
+    raindrop.name = @"raindrop";/*打乱代码结构*/
     
     // set raindrop physicsbody
-    raindrop.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:raindrop.size];
-    raindrop.physicsBody.dynamic = YES;
-    raindrop.physicsBody.categoryBitMask = rainCategory;
-    raindrop.physicsBody.contactTestBitMask = koalaCategory;
-    raindrop.physicsBody.collisionBitMask = 0;
-    raindrop.physicsBody.usesPreciseCollisionDetection = YES;
+    raindrop.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:raindrop.size];/*打乱代码结构*/
+    raindrop.physicsBody.dynamic = YES;/*打乱代码结构*/
+    raindrop.physicsBody.categoryBitMask = rainCategory;/*打乱代码结构*/
+    raindrop.physicsBody.contactTestBitMask = koalaCategory;/*打乱代码结构*/
+    raindrop.physicsBody.collisionBitMask = 0;/*打乱代码结构*/
+    raindrop.physicsBody.usesPreciseCollisionDetection = YES;/*打乱代码结构*/
 
-    raindrop.position = CGPointMake(actualX, self.frame.size.height + raindrop.size.height / 2);
+    raindrop.position = CGPointMake(actualX, self.frame.size.height + raindrop.size.height / 2);/*打乱代码结构*/
     
     [raindrop runAction:[SKAction repeatActionForever:
                           [SKAction animateWithTextures:_waterDroppingFrames
                                            timePerFrame:0.1f
                                                  resize:YES
-                                                restore:YES]] withKey:@"rainingWaterDrop"];
+                                                restore:YES]] withKey:@"rainingWaterDrop"];/*打乱代码结构*/
     
-    [self addChild:raindrop];
+    [self addChild:raindrop];/*打乱代码结构*/
     
-    int minDuration = 10;
-    int maxDuration = 20;
+    int minDuration = 10;/*打乱代码结构*/
+    int maxDuration = 20;/*打乱代码结构*/
     
     if(s >= 40 && _rainCount % 8 == 0){
-        minDuration = 20;
-        maxDuration = 30;
+        minDuration = 20;/*打乱代码结构*/
+        maxDuration = 30;/*打乱代码结构*/
     }else if(s >= 20 && _rainCount % 6 == 0){
-        minDuration = 20;
-        maxDuration = 25;
+        minDuration = 20;/*打乱代码结构*/
+        maxDuration = 25;/*打乱代码结构*/
     }
     
-    int rangeDuration = maxDuration - minDuration;
-    float actualDuration = ((arc4random() % rangeDuration) + minDuration) / 10;
+    int rangeDuration = maxDuration - minDuration;/*打乱代码结构*/
+    float actualDuration = ((arc4random() % rangeDuration) + minDuration) / 10;/*打乱代码结构*/
     
     SKAction * actionMove = [SKAction moveTo:CGPointMake(actualX, _ground.position.y + _ground.size.height)
-                                    duration:actualDuration];
+                                    duration:actualDuration];/*打乱代码结构*/
     SKAction * countMove = [SKAction runBlock:^{
-        [_counter increse];
-    }];
-    SKAction * actionMoveDone = [SKAction removeFromParent];
+        [_counter increse];/*打乱代码结构*/
+    }];/*打乱代码结构*/
+    SKAction * actionMoveDone = [SKAction removeFromParent];/*打乱代码结构*/
     
-    [raindrop runAction:[SKAction sequence:@[actionMove, countMove, actionMoveDone]] withKey:@"rain"];
-    _rainCount++;
+    [raindrop runAction:[SKAction sequence:@[actionMove, countMove, actionMoveDone]] withKey:@"rain"];/*打乱代码结构*/
+    _rainCount++;/*打乱代码结构*/
 }
 
 -(void) stopAllRaindrop{
     for (SKSpriteNode * node in [self children]) {
         if ([node actionForKey:@"rain"]) {
-            [node removeActionForKey:@"rain"];
+            [node removeActionForKey:@"rain"];/*打乱代码结构*/
         }
     }
 }
 
 -(void) didBeginContact:(SKPhysicsContact *) contact {
-    SKPhysicsBody *firstBody, *secondBody;
+    SKPhysicsBody *firstBody, *secondBody;/*打乱代码结构*/
     if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
-        firstBody = contact.bodyA;
-        secondBody = contact.bodyB;
+        firstBody = contact.bodyA;/*打乱代码结构*/
+        secondBody = contact.bodyB;/*打乱代码结构*/
     }else{
-        firstBody = contact.bodyB;
-        secondBody = contact.bodyA;
+        firstBody = contact.bodyB;/*打乱代码结构*/
+        secondBody = contact.bodyA;/*打乱代码结构*/
     }
     
     if ((firstBody.categoryBitMask & rainCategory) != 0 &&
         (secondBody.categoryBitMask & koalaCategory) != 0) {
-        [self player:(SKSpriteNode *) secondBody.node didCollideWithRaindrop:(SKSpriteNode *)firstBody.node];
+        [self player:(SKSpriteNode *) secondBody.node didCollideWithRaindrop:(SKSpriteNode *)firstBody.node];/*打乱代码结构*/
     }
 }
 
 -(void) player:(SKSpriteNode *)playerNode didCollideWithRaindrop:(SKSpriteNode *)raindropNode {
     if (_player.isLive) {
         
-        [_player ended];
-        [self stopAllRaindrop];
+        [_player ended];/*打乱代码结构*/
+        [self stopAllRaindrop];/*打乱代码结构*/
         
-        [raindropNode runAction:[SKAction fadeOutWithDuration:0.3]];
+        [raindropNode runAction:[SKAction fadeOutWithDuration:0.3]];/*打乱代码结构*/
         
-        [_counter runAction:[SKAction fadeOutWithDuration:0.3]];
-        [_score runAction:[SKAction fadeOutWithDuration:0.3]];
+        [_counter runAction:[SKAction fadeOutWithDuration:0.3]];/*打乱代码结构*/
+        [_score runAction:[SKAction fadeOutWithDuration:0.3]];/*打乱代码结构*/
         
         [self runAction:
          [SKAction sequence:@[
                               [SKAction waitForDuration:1.0],
                               [SKAction runBlock:^{
                                  // call gameover screen
-                                 [self gameOver];
+                                 [self gameOver];/*打乱代码结构*/
                               }],
-          ]]];
+          ]]];/*打乱代码结构*/
 
     }
 }
 
 -(CGFloat) getFireTime {
-    CGFloat s = - ceil(_startTime.timeIntervalSinceNow);
-    CGFloat fireTime = 1.0;
+    CGFloat s = - ceil(_startTime.timeIntervalSinceNow);/*打乱代码结构*/
+    CGFloat fireTime = 1.0;/*打乱代码结构*/
     if (s < 15) {
-        fireTime = (25 - s) * 0.02;
+        fireTime = (25 - s) * 0.02;/*打乱代码结构*/
     }else {
-        fireTime = 0.2;
+        fireTime = 0.2;/*打乱代码结构*/
     }
-    return fireTime;
+    return fireTime;/*打乱代码结构*/
 }
 
 -(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    [ButtonNode doButtonsActionEnded:self touches:touches withEvent:event];
-    [_player touchesEnded:touches withEvent:event];
+    [ButtonNode doButtonsActionEnded:self touches:touches withEvent:event];/*打乱代码结构*/
+    [_player touchesEnded:touches withEvent:event];/*打乱代码结构*/
 }
 
 -(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    [_player touchesMoved:touches withEvent:event];
-    [_guide touchesMoved:touches withEvent:event];
+    [_player touchesMoved:touches withEvent:event];/*打乱代码结构*/
+    [_guide touchesMoved:touches withEvent:event];/*打乱代码结构*/
 }
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [ButtonNode doButtonsActionBegan:self touches:touches withEvent:event];
-    [_player touchesBegan:touches withEvent:event];
+    [ButtonNode doButtonsActionBegan:self touches:touches withEvent:event];/*打乱代码结构*/
+    [_player touchesBegan:touches withEvent:event];/*打乱代码结构*/
 }
 
 -(void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast {
     if(_player.isLive && _raindrop){
-        self.lastSpawnTimeInterval += timeSinceLast;
+        self.lastSpawnTimeInterval += timeSinceLast;/*打乱代码结构*/
         if(self.lastSpawnTimeInterval > [self getFireTime]){
-            self.lastSpawnTimeInterval = 0;
-            [self addRaindrop];
+            self.lastSpawnTimeInterval = 0;/*打乱代码结构*/
+            [self addRaindrop];/*打乱代码结构*/
         }
     }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
-    CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;
-    self.lastUpdateTimeInterval = currentTime;
+    CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;/*打乱代码结构*/
+    self.lastUpdateTimeInterval = currentTime;/*打乱代码结构*/
     if (timeSinceLast > 1.0) {
-        timeSinceLast = 1.0 / 60.0;
-        self.lastUpdateTimeInterval = currentTime;
+        timeSinceLast = 1.0 / 60.0;/*打乱代码结构*/
+        self.lastUpdateTimeInterval = currentTime;/*打乱代码结构*/
     }
 
-    [self updateWithTimeSinceLastUpdate:timeSinceLast];
-    [_player update:currentTime];
+    [self updateWithTimeSinceLastUpdate:timeSinceLast];/*打乱代码结构*/
+    [_player update:currentTime];/*打乱代码结构*/
 }
 
 @end
